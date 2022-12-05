@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "NodeNext",
+		"target": "ES2020",
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitAny": true,
+		"sourceMap": true,
+		"outDir": "dist",
+		"allowSyntheticDefaultImports": true
+	},
+	"exclude": ["node_modules", "**/node_modules/*"],
+	"include": ["src/**/*", "server.ts"]
+}
