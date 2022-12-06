@@ -10,3 +10,6 @@ insert_final_newline = false
 
 [*.md]
 indent_size = 2
+
+[src/docs/**/*.yaml]
+indent_style = space

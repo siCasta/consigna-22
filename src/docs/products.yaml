@@ -1,0 +1,98 @@
+components:
+    requestBodies:
+        productoNuevo:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: id autogenerado por la memory
+                name:
+                    type: string
+                    description: Nombre del producto
+                price:
+                    type: number
+                    description: Precio del producto
+                desc:
+                    type: string
+                    description: La descripcion del producto
+            example:
+                name: papa
+                price: 10
+                desc: is papa
+    schemas:
+        Product:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: id autogenerado por la memory
+                name:
+                    type: string
+                    description: Nombre del producto
+                price:
+                    type: number
+                    description: Precio del producto
+                desc:
+                    type: string
+                    description: La descripcion del producto
+            example:
+                id: 6dffbdf8-72ef-4118-a839-f8d908585651
+                name: rice
+                price: 10
+                desc: is rice
+            required:
+                - name
+                - price
+                - desc
+
+paths:
+    /api/products:
+        get:
+            summary: Obtiene todos los productos
+            tags:
+                - Products
+            responses:
+                '200':
+                    description: Los productos se obtuvieron correctamente
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Product'
+        post:
+            summary: Crea un nuevo producto
+            tags:
+                - Products
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/requestBodies/productoNuevo'
+            responses:
+                '200':
+                    description: El producto se inserto correctamente
+                '400':
+                    description: No se enviaron los datos
+                '500':
+                    description: Error interno del servidor
+    /api/products/{pid}:
+        get:
+            summary: Obtiene el producto
+            tags:
+                - Products
+            parameters:
+                - name: pid
+                  in: path
+                  required: true
+                  description: El id del producto
+                  schema:
+                      type: string
+                      items:
+                          $ref: '#/components/schemas/Product'
+            responses:
+                '200':
+                    description: El producto se obtuvo correctamente
+                '404':
+                    description: El producto no se encontro

@@ -16,6 +16,8 @@
 		"@types/mocha": "^10.0.1",
 		"@types/node": "^18.11.9",
 		"@types/supertest": "^2.0.12",
+		"@types/swagger-jsdoc": "^6.0.1",
+		"@types/swagger-ui-express": "^4.1.3",
 		"@types/uuid": "^9.0.0",
 		"nodemon": "^2.0.20",
 		"ts-node": "^10.9.1",
@@ -26,7 +28,10 @@
 		"dirname-es": "^1.0.7",
 		"express": "^4.18.2",
 		"mocha": "^10.1.0",
+		"openapi-types": "^12.0.2",
 		"supertest": "^6.3.1",
+		"swagger-jsdoc": "^6.2.5",
+		"swagger-ui-express": "^4.6.0",
 		"uuid": "^9.0.0"
 	}
 }

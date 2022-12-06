@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 
 import ProductService from '../../services/models/ProductService.js'
 import { ProductData } from '../../types/models.js'
+import { haveKeys } from '../../utils/functions.js'
 
 const ProService = new ProductService()
 
@@ -14,9 +15,15 @@ export const getProducts = (_req: Request, res: Response) => {
 export const createProduct = (req: Request, res: Response) => {
 	const { name, desc, price }: Omit<ProductData, 'id'> = req.body
 
-	if (!name || !desc || !price)
-		return res.json({
-			error: 'name, desc or price fields are missing'
+	const [haveProperties, message] = haveKeys(req.body, [
+		'name',
+		'desc',
+		'price'
+	])
+
+	if (!haveProperties)
+		return res.status(400).json({
+			error: message
 		})
 
 	const product = {
@@ -38,7 +45,7 @@ export const getProduct = (req: Request<{ pid: string }>, res: Response) => {
 	const product = ProService.getProduct({ id: pid })
 
 	if (!product)
-		return res.json({
+		return res.status(404).json({
 			error: 'Product not found 😶‍🌫️'
 		})
 
